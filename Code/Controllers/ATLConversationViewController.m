@@ -1141,7 +1141,7 @@ static NSInteger const ATLPhotoActionSheet = 1000;
         reuseIdentifier = [self.dataSource conversationViewController:self reuseIdentifierForMessage:message];
     }
     if (!reuseIdentifier) {
-        if ([self.layerClient.authenticatedUser.userID isEqualToString:message.sender.userID]) {
+        if (!message.sender || !message.sender.userID || [self.layerClient.authenticatedUser.userID isEqualToString:message.sender.userID]) {
             reuseIdentifier = ATLOutgoingMessageCellIdentifier;
         } else {
             reuseIdentifier = ATLIncomingMessageCellIdentifier;
